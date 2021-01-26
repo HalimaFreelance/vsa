@@ -1,8 +1,16 @@
+import 'dart:convert';
+
 import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:visitorsa/Screens/calendar_screen.dart';
+import 'package:visitorsa/Screens/filter_screen.dart';
 import 'package:visitorsa/Screens/search_details_screen.dart';
 import 'package:visitorsa/Screens/search_result_screen.dart';
 import 'package:visitorsa/utils/app_localizations.dart';
@@ -12,7 +20,6 @@ class SearchScreen extends StatefulWidget {
   @override
   _SearchScreenState createState() => _SearchScreenState();
 }
-
 enum SingingCharacter { bestFare, business }
 
 class _SearchScreenState extends State<SearchScreen> {
@@ -158,7 +165,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                             ),
                                             InkWell(
                                               onTap: () {
-                                                _modalBottomSheetMenu();
+//                                                _modalBottomSheetMenu();
                                               },
 //                                              child: TextFormField(
 //                                                keyboardType:
@@ -234,31 +241,42 @@ class _SearchScreenState extends State<SearchScreen> {
                                       ),
                                     );
                                   },
-                                  child: TextFormField(
-                                    keyboardType: TextInputType.emailAddress,
-                                    controller: null,
-                                    autofocus: false,
-                                    enabled: false,
-                                    decoration: InputDecoration(
-                                      fillColor: Colors.white,
-                                      filled: true,
-                                      prefixIcon: Padding(
-                                        padding: const EdgeInsets.all(15.0),
-                                        child: SvgPicture.asset(
-                                          'images/icon_mail.svg',
-                                          height: 5.0,
-                                          width: 5.0,
-                                          allowDrawingOutsideViewBox: true,
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          new MaterialPageRoute(
+                                              builder: (context) =>
+                                                  new CalendarScreen()));
+//
+                                    },
+                                    child: TextFormField(
+                                      keyboardType: TextInputType.emailAddress,
+                                      controller: null,
+                                      autofocus: false,
+                                      enabled: false,
+                                      decoration: InputDecoration(
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        prefixIcon: Padding(
+                                          padding: const EdgeInsets.all(15.0),
+                                          child: SvgPicture.asset(
+                                            'images/icon_mail.svg',
+                                            height: 5.0,
+                                            width: 5.0,
+                                            allowDrawingOutsideViewBox: true,
+                                          ),
                                         ),
+                                        hintText: AppLocalizations.of(context)
+                                            .translate('when'),
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey),
+                                        contentPadding: EdgeInsets.fromLTRB(
+                                            20.0, 10.0, 20.0, 10.0),
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
                                       ),
-                                      hintText: AppLocalizations.of(context)
-                                          .translate('when'),
-                                      hintStyle: TextStyle(color: Colors.grey),
-                                      contentPadding: EdgeInsets.fromLTRB(
-                                          20.0, 10.0, 20.0, 10.0),
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0)),
                                     ),
                                   ),
                                 ),
@@ -295,7 +313,13 @@ class _SearchScreenState extends State<SearchScreen> {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    onPressed: () async {
+                                    onPressed: ()  {
+                                      // Navigator.push(
+                                      //     context,
+                                      //     new MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //         new FilterScreen()));
+
 //                                  if (model.authValidation(
 //                                      emailController.text.trim(),
 //                                      passwordController.text)) {
@@ -360,7 +384,7 @@ class _SearchScreenState extends State<SearchScreen> {
 //                                      _scaffoldKey.currentState
 //                                          .showSnackBar(snackBar);
 //                                    }
-//                                  }
+// //                                  }
 //                                              Navigator.pushAndRemoveUntil(
 //                                                  context,
 //                                                  MaterialPageRoute(
@@ -559,15 +583,15 @@ class _SearchScreenState extends State<SearchScreen> {
                                             child: Row(
                                               children: [
                                                 _character ==
-                                                        SingingCharacter.bestFare
+                                                    SingingCharacter.bestFare
                                                     ? Icon(
-                                                        Icons.check_circle,
-                                                        color: Colors.green,
-                                                      )
+                                                  Icons.check_circle,
+                                                  color: Colors.green,
+                                                )
                                                     : Icon(
-                                                        Icons.check_circle,
-                                                        color: Colors.grey,
-                                                      ),
+                                                  Icons.check_circle,
+                                                  color: Colors.grey,
+                                                ),
                                                 SizedBox(width: 4),
                                                 Text(
                                                   AppLocalizations.of(context)
@@ -601,21 +625,21 @@ class _SearchScreenState extends State<SearchScreen> {
                                             child: Row(
                                               children: [
                                                 _character ==
-                                                        SingingCharacter.bestFare
+                                                    SingingCharacter.bestFare
                                                     ? Icon(
-                                                        Icons.check_circle,
-                                                        color: Colors.grey,
-                                                      )
+                                                  Icons.check_circle,
+                                                  color: Colors.grey,
+                                                )
                                                     : Icon(
-                                                        Icons.check_circle,
-                                                        color: Colors.green,
-                                                      ),
+                                                  Icons.check_circle,
+                                                  color: Colors.green,
+                                                ),
                                                 SizedBox(width: 4),
                                                 Text(
                                                   AppLocalizations.of(context)
                                                       .translate('business'),
                                                   style:
-                                                      TextStyle(color: Colors.grey),
+                                                  TextStyle(color: Colors.grey),
                                                 )
                                               ],
                                             ),
@@ -625,6 +649,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     ),
                                   ],
                                 ),
+
 //                                Container(
 //                                  color: Colors.red,
 //                                  width: MediaQuery.of(context).size.width,
@@ -771,7 +796,7 @@ class _SearchScreenState extends State<SearchScreen> {
 //                                                  context,
 //                                                  MaterialPageRoute(
 //                                                      builder: (context) =>
-//                                                          SearchOffersScreen()),
+//                                                          HomePage()),
 //                                                  (Route<dynamic> route) =>
 //                                                      false);
                                     },
@@ -806,26 +831,26 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  void _modalBottomSheetMenu() {
-    showMaterialModalBottomSheet(
-        context: context,
-        builder: (builder) {
-          return Container(
-            height: 350.0,
-            color: Colors.red,
-            //could change this to Color(0xFF737373),
-            //so you don't have to change MaterialApp
-            // canvasColor
-//              child: new Container(
-//                  decoration: new BoxDecoration(
-//                      color: Colors.white,
-//                      borderRadius: new BorderRadius.only(
-//                          topLeft: const Radius.circular(10.0),
-//                          topRight: const Radius.circular(10.0))),
-//                  child: new Center(
-//                    child: new Text("This is a modal sheet"),
-//                  )),
-          );
-        });
-  }
+//  void _modalBottomSheetMenu() {
+//    showMaterialModalBottomSheet(
+//        context: context,
+//        builder: (builder) {
+//          return Container(
+//            height: 350.0,
+//            color: Colors.red,
+//            //could change this to Color(0xFF737373),
+//            //so you don't have to change MaterialApp
+//            // canvasColor
+////              child: new Container(
+////                  decoration: new BoxDecoration(
+////                      color: Colors.white,
+////                      borderRadius: new BorderRadius.only(
+////                          topLeft: const Radius.circular(10.0),
+////                          topRight: const Radius.circular(10.0))),
+////                  child: new Center(
+////                    child: new Text("This is a modal sheet"),
+////                  )),
+//          );
+//        });
+//  }
 }
