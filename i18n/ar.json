@@ -266,8 +266,9 @@
   "empty_orders": "لم تقم بعمل طلب بعد",
   "pending": "قيد الانتظار",
   "sent": "تم الارسال",
-  "did_you_forgot_pass": "هل نسيت كلمة المرور؟"
+  "did_you_forgot_pass": "هل نسيت كلمة المرور؟",
 
+  "book_flight": "حجز"
 
 
 
