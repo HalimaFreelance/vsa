@@ -12,7 +12,7 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
-  @override
+  int _clicked=0;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -29,7 +29,6 @@ class _StartScreenState extends State<StartScreen> {
               padding:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 14.0),
               child: Container(
-//                color: Colors.green,
                 child: Column(
                   children: [
                     SizedBox(
@@ -73,10 +72,13 @@ class _StartScreenState extends State<StartScreen> {
                         ),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
-                            color: AppColors.lightGreen),
+                            color: _clicked==0?AppColors.darkGreen:_clicked==1?AppColors.lightGreen:AppColors.darkGreen),
                       ),
                       onTap: () {
                         {
+                          setState(() {
+                            _clicked=1;
+                          });
                           Navigator.push(
                               context,
                               new MaterialPageRoute(
@@ -100,10 +102,13 @@ class _StartScreenState extends State<StartScreen> {
                         ),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
-                            color: AppColors.darkGreen //# Color(0xFFf5f5f5)
+                            color: _clicked==0?AppColors.darkGreen:_clicked==2?AppColors.lightGreen:AppColors.darkGreen//# Color(0xFFf5f5f5)
                             ),
                       ),
                       onTap: () {
+                        setState(() {
+                          _clicked=2;
+                        });
                         Navigator.push(
                             context,
                             new MaterialPageRoute(

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:visitorsa/Screens/customer_support_screen.dart';
+import 'package:visitorsa/Screens/my_booking.dart';
 import 'package:visitorsa/utils/AppLanguage.dart';
 import 'package:visitorsa/utils/app_localizations.dart';
 
@@ -60,10 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             onTap: () {
-//              Navigator.push(
-//                  context,
-//                  new MaterialPageRoute(
-//                      builder: (context) => new ProfileScreen()));
+
             },
           ),
           InkWell(
@@ -87,10 +86,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           InkWell(
             onTap: () {
-//              Navigator.push(
-//                  context,
-//                  new MaterialPageRoute(
-//                      builder: (context) => new BookingsScreen(2)));
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new MyBookingScreen()));
             },
             child: ListTile(
               leading: SvgPicture.asset(
@@ -168,10 +167,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
           InkWell(
             onTap: () {
-//              Navigator.push(
-//                  context,
-//                  new MaterialPageRoute(
-//                      builder: (context) => new CustomerSupportScreen()));
+             Navigator.push(
+                 context,
+                 new MaterialPageRoute(
+                     builder: (context) => new CustomerSupportScreen()));
             },
             child: ListTile(
               leading: Icon(Icons.call, color: Colors.white),
@@ -234,12 +233,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           });
                         },
                         title: Text(
-                            AppLocalizations.of(context).translate('arabic'))),
+                            AppLocalizations.of(context).translate('arabic'),style: TextStyle(color:
+                        Colors.white),)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: ListTile(
-                      title: Text('English'),
+                      title: Text('English',style: TextStyle(color: Colors.white),),
                       onTap: () {
                         setState(() {
                           appLanguage.changeLanguage(Locale("en"));

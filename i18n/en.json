@@ -25,7 +25,7 @@
   "lets_get_started": "Lets get started",
   "sign_in": "Sign in",
   "sign_up": "Sign up",
-  "start_msg" : "Welcome to 5himaka",
+  "start_msg" : "Sign up to see deals up to 70% easily manager\nyour current booking, and so much more.. ",
 
   "your_orders" : "Your orders",
   "order_client": "Client orders",
@@ -258,7 +258,7 @@
   "old_pass": "Old password",
   "new_pass": "New password",
 
-
+"your_booking": "Your booking",
   "already_in_cart": "Already in cart",
   "remove": "Remove",
   "sub_total": "Sub total",
@@ -274,7 +274,11 @@
   "pending": "Pending",
   "sent": "Sent",
   "book_flight": "Book Flight",
-  "see_offers": "See Offers"
+  "see_offers": "See Offers",
+  "my_booking": "My Booking",
+  "up_coming": "Up coming",
+  "time_to_arr": "Time to Arrive",
+  "have_sp_req": "Have a special request?"
 
 
 

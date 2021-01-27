@@ -15,7 +15,6 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
-  @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,

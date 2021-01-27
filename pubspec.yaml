@@ -157,6 +157,9 @@ flutter:
     - images/test.jpg
     - images/knife.svg
     - images/parking.svg
+    - images/green_calender.svg
+    - images/booking_confirm.svg
+    - images/booking_bed.svg
 
 
   # To add assets to your application, add an assets section, like this:
