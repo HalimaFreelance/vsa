@@ -6,9 +6,9 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:visitorsa/utils/app_localizations.dart';
 
 class FilterScreen extends StatefulWidget {
-  final int type;
-
-  FilterScreen({this.type});
+//  final int type;
+//
+//  FilterScreen({this.type});
 
   @override
   _FilterScreenState createState() => _FilterScreenState();
@@ -24,20 +24,267 @@ class _FilterScreenState extends State<FilterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            AppLocalizations.of(context).translate('filter'),
-            style: TextStyle(color: Colors.grey[900]),
-          ),
-          elevation: 0.0,
-          iconTheme: IconThemeData(
-            color: Colors.grey[900], //change your color here
-          ),
-          backgroundColor: Color(0xFFf5f5f5),
+    List<String> options = [
+      'News',
+      'Entertainment',
+      'Politics',
+      'Automotive',
+      'Sports',
+      'Education',
+      'Fashion',
+      'Travel',
+      'Food',
+      'Tech',
+      'Science',
+    ];
+    return Stack(
+
+      children: [
+        Image.asset(
+          "images/blur_bg.jpg",
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          fit: BoxFit.cover,
         ),
-        backgroundColor: Color(0xFFf5f5f5),
-        body:
+        Scaffold(
+            appBar: AppBar(
+              title: Text(
+                'filter',
+                style: TextStyle(color: Colors.white70),
+              ),
+              elevation: 0.0,
+              iconTheme: IconThemeData(
+                color: Colors.white, //change your color here
+              ),
+              backgroundColor: Colors.green,
+            ),
+            backgroundColor: Colors.transparent,
+            body: ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'price',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
+                            ),
+                            Text('99\$',style: TextStyle(color: Colors.white),),
+                          ],
+                        ),
+                      ),
+                      SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          overlayColor: Colors.black,
+                          activeTickMarkColor: Colors.white,
+                          activeTrackColor: Colors.orange,
+                          inactiveTrackColor: Colors.white,
+                          //trackHeight: 8.0,
+                          thumbColor: Colors.black,
+                          trackHeight: 8.0,
+                          valueIndicatorColor: Colors.orange,
+                        ),
+                        child: frs.RangeSlider(
+                          min: 0.0,
+                          max: 100.0,
+                          lowerValue: 1.0,
+                          upperValue: 20.0,
+                          divisions: 10,
+                          showValueIndicator: true,
+                          valueIndicatorMaxDecimals: 1,
+                          onChanged: (double newLowerValue, double newUpperValue) {
+//                      setState(() {
+//                        model.lowerValue = newLowerValue;
+//                        model.upperValue = newUpperValue;
+//                      });
+                          },
+                          onChangeStart:
+                              (double startLowerValue, double startUpperValue) {
+                            print(
+                                'Started with values: $startLowerValue and $startUpperValue');
+                          },
+                          onChangeEnd:
+                              (double newLowerValue, double newUpperValue) {
+                            print(
+                                'Ended with values: $newLowerValue and $newUpperValue');
+                          },
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.white,
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+                        child: Container(
+                          width: double.infinity,
+                          child: Text(
+                            'star_rating',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 5,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                SmoothStarRating(
+                                    allowHalfRating: false,
+                                    // starCount: 5,
+                                    rating: index == 0
+                                        ? 5
+                                        : index == 1
+                                            ? 4
+                                            : index == 2
+                                                ? 3
+                                                : index == 3
+                                                    ? 2
+                                                    : 1,
+                                    size: 20.0,
+                                    isReadOnly: true,
+                                    filledIconData: Icons.star,
+                                    color: Colors.deepOrangeAccent,
+                                    borderColor: Colors.white,
+                                    spacing: 0.0),
+                                Expanded(
+                                  child: Align(
+                                    alignment: AppLocalizations.of(context)
+                                                .locale
+                                                .languageCode ==
+                                            'en'
+                                        ? Alignment.centerRight
+                                        : Alignment.centerLeft,
+                                    child: Checkbox(
+                                      value: isChecked.contains(index),
+                                      onChanged: (value) {
+                                        if (value) {
+                                          setState(() {
+                                            isChecked.add(index);
+                                          });
+                                        } else {
+                                          setState(() {
+                                            isChecked.remove(index);
+                                          });
+                                        }
+                                      },
+                                      checkColor: Colors.green,
+                                      focusColor: Colors.green,
+                                      // color of tick Mark
+                                      activeColor: Colors.white,
+
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                              ],
+                            );
+                          }),
+                      Divider(
+                        color: Colors.white,
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 8.0, left: 8.0, right: 8.0),
+                        child: Container(
+                          width: double.infinity,
+                          child: Text(
+                            'Amenities',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      ),
+                      ListView(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.all(5),
+                        children: <Widget>[
+                          Content(
+                            child: ChipsChoice<String>.multiple(
+                              value: tags,
+                              options: ChipsChoiceOption.listFrom<String, String>(
+                                source: options,
+                                value: (i, v) => v,
+                                label: (i, v) => v,
+                              ),
+                              onChanged: (val) {
+                                setState(() {
+                                  if (val.length > 1) {
+                                    tags = [val[val.length - 1]];
+                                  } else {
+                                    tags = val;
+                                  }
+                                });
+                              },
+                              isWrapped: true,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 16.0, horizontal: 32),
+                          child: RaisedButton(
+                            child: Text(
+                              'done',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () {
+//                          FilterSelections filter;
+//                          if (tags.length == 0) {
+//                            filter = FilterSelections(
+//                                model.lowerValue,
+//                                model.upperValue,
+//                                "",
+//                                isChecked,
+//                                _character == FilterType.isNew
+//                                    ? 0
+//                                    : 1);
+//                          } else {
+//                            filter = FilterSelections(
+//                                model.lowerValue,
+//                                model.upperValue,
+//                                model.getCatId(
+//                                    model.prepFilterResponse.data
+//                                        .mainCategories,
+//                                    tags[0]),
+//                                isChecked,
+//                                _character == FilterType.isNew
+//                                    ? 0
+//                                    : 1);
+//                          }
+//                          Navigator.of(context).pop(filter);
+                            },
+                            color: Colors.green,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
 //      model.prepFilterResponse != null
 //          ? ListView(
 //        children: [
@@ -328,37 +575,64 @@ class _FilterScreenState extends State<FilterScreen> {
 //      )
 //          : model.state == ViewState.Idle
 //          ?
-            Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Container(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    AppLocalizations.of(context).translate('network_failed'),
-                  ),
-                  RaisedButton(
-                    onPressed: () {
-//                    refreshScreen(model);
-                    },
-                    color: Color.fromRGBO(235, 85, 85, 100),
-                    child: Icon(Icons.refresh),
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30),
-                        side: BorderSide(
-                            color: Color.fromRGBO(235, 85, 85, 100))),
-                  )
-                ],
-              ),
+//            Scaffold(
+//          backgroundColor: Colors.transparent,
+//          body: Container(
+//            child: Center(
+//              child: Column(
+//                mainAxisAlignment: MainAxisAlignment.center,
+//                children: <Widget>[
+//                  Text(
+//                    AppLocalizations.of(context).translate('network_failed'),
+//                  ),
+//                  RaisedButton(
+//                    onPressed: () {
+////                    refreshScreen(model);
+//                    },
+//                    color: Color.fromRGBO(235, 85, 85, 100),
+//                    child: Icon(Icons.refresh),
+//                    shape: new RoundedRectangleBorder(
+//                        borderRadius: new BorderRadius.circular(30),
+//                        side: BorderSide(
+//                            color: Color.fromRGBO(235, 85, 85, 100))),
+//                  )
+//                ],
+//              ),
+//            ),
+//          ),
+//        )
+////          : Center(
+////        child: CircularProgressIndicator(
+////          backgroundColor: Colors.lightBlue,
+////        ),
+////      ),
             ),
-          ),
-        )
-//          : Center(
-//        child: CircularProgressIndicator(
-//          backgroundColor: Colors.lightBlue,
-//        ),
-//      ),
-        );
+      ],
+    );
+  }
+}
+
+class Content extends StatelessWidget {
+  final Widget child;
+
+  Content({
+    Key key,
+    @required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2,
+      color: Colors.transparent,
+      margin: EdgeInsets.all(5),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          child,
+        ],
+      ),
+    );
   }
 }

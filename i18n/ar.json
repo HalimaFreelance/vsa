@@ -273,7 +273,9 @@
   "book_flight": "حجز",
   "up_coming": "الحالي",
   "time_to_arr": "موعد الوصول",
-  "have_sp_req": "هل ليك طلب خاص؟"
+  "have_sp_req": "هل ليك طلب خاص؟",
+  "cancel_booking": "الغاء الحجز"
+
 
 
 }

@@ -314,11 +314,11 @@ class _SearchScreenState extends State<SearchScreen> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     onPressed: ()  {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     new MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //         new FilterScreen()));
+                                      Navigator.push(
+                                          context,
+                                          new MaterialPageRoute(
+                                              builder: (context) =>
+                                              new FilterScreen()));
 
 //                                  if (model.authValidation(
 //                                      emailController.text.trim(),
